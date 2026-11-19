@@ -55,7 +55,10 @@ receipt/bill 1 and 8; "99% since 2013" 7; agent-won-it 8; died-waiting 9.
   Note Says GTA 6". Stage: checked — every validity check passes, incl.
   entry_link (post read, 1 photo, play code, dossier kept) and
   thinking_revised (fix session bundled). Dev grading underway; live
-  score/rank not yet posted (field 1,007 entries; top-10 cutoff ~848k).
+  score/rank: dev score 608,209 (status finished, judge rated) — better than
+  v1's 591,271 (rank 478); API rank for v2 not yet assigned (null). Field
+  1,007 entries, 963 ranked; top-10 cutoff ~848k, so v2 is outside paid
+  places (50 paid). Result due 8 Dec 2026.
   Claim code ONLY in ~/.config/makefun/gta6-meme-x-01-v2-submission.json (0600).
 - Bundle: gta6-meme-x-01-v2-bundle.tar.gz (19 sessions: 18 build + fix
   2998b5b0; sha256 60d3c76c…). Kit check 14 passed / 0 failed on both
