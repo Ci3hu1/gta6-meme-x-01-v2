@@ -17,7 +17,7 @@ mkdir -p out && MAKEFUN_BOT_DIR=. MAKEFUN_OUTPUT_DIR=out node main.ts
 ## The meme
 
 - `meme.jpg` — the entry image, 1200x675, single panel: Vice City sunset, the real make.fun ghost holding a doctor's note and a money bag.
-- `compose.py` — renders `meme.jpg` from scratch (PIL gradients + silhouettes; the ghost is cut from `assets/splash.png`, the press splash, by masking out the magenta disc and flood-filling the body).
+- `compose.py` — renders `meme.jpg` from scratch (PIL gradients + silhouettes; the ghost is rendered from the official vector logo, `assets/ghost-logo.svg`).
 - `assets/` — scene sources: the press splash, `mark-1024.png`, the ghost cutout, and the Anton font (OFL).
 - `tests/run.mjs` — checks `main.ts` copies `POST.json` correctly and `meme.jpg` is 1200x675.
 
