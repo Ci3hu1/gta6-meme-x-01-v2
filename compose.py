@@ -1,11 +1,11 @@
 # compose.py — renders meme.jpg (1200x675) for gta6-meme-x-01-v2.
-# Ghost: REAL make.fun ghost cut from the press splash (dark-1125x2436.png).
-# Cutout method: mask = NOT magenta; flood-fill the connected component from a
-# seed inside the white body (magenta disc bars the fill from leaking out);
-# right strip keeps white body only, dropping the star-badge ring.
+# Ghost: the REAL make.fun ghost, rendered at high resolution from the
+# official vector logo (assets/ghost-logo.svg, light variant, magenta coin
+# removed — the money bag already carries the paid angle and the coin would
+# collide with it). The old splash flood-fill cut is gone: no flat vertical
+# edge, the full ghost outline survives on every side.
 # Scene: Vice City sunset drawn in code (PIL gradients + silhouettes). No photos.
 import os
-from collections import deque
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 
@@ -15,42 +15,12 @@ W, H = 1200, 675
 PALM = (28, 11, 51)
 SKYLINE = (36, 16, 64)
 
-# ---------------------------------------------------------------- ghost cutout
+# ---------------------------------------------------------------- ghost
 def cut_ghost():
-    splash = Image.open(os.path.join(ASSETS, 'splash.png')).convert('RGB')
-    arr = np.array(splash).astype(np.int16)
-    print('magenta samples:', [tuple(arr[y, x]) for x, y in
-          [(450, 1080), (700, 1300), (562, 1060), (400, 1200)]])
-    mag = ((arr[:, :, 0] > 120) & ((arr[:, :, 0] - arr[:, :, 1]) > 80)
-           & (arr[:, :, 2] > 60) & ((arr[:, :, 2] - arr[:, :, 1]) > 25))
-    mask = ~mag
-    x0, y0, x1, y1 = 380, 1030, 745, 1400
-    sub = mask[y0:y1, x0:x1]
-    hh, ww = sub.shape
-    seen = np.zeros_like(sub, dtype=bool)
-    sy, sx = 1200 - y0, 520 - x0  # seed inside the white body
-    assert sub[sy, sx], 'seed pixel is magenta?!'
-    dq = deque([(sy, sx)])
-    seen[sy, sx] = True
-    while dq:
-        y, x = dq.popleft()
-        for ny, nx in ((y - 1, x), (y + 1, x), (y, x - 1), (y, x + 1)):
-            if 0 <= ny < hh and 0 <= nx < ww and not seen[ny, nx] and sub[ny, nx]:
-                seen[ny, nx] = True
-                dq.append((ny, nx))
-    # Right strip (splash x > 625): hard cut — drops the star-badge coin entirely
-    # (its white circle survives a white-only rule because it IS white).
-    seen[:, 626 - x0:] = False
-    rgb = np.array(splash)[y0:y1, x0:x1].astype(np.int16)
-    ys, xs = np.where(seen)
-    print('ghost component bbox x', xs.min() + x0, xs.max() + x0,
-          'y', ys.min() + y0, ys.max() + y0, 'px', int(seen.sum()))
-    rgba = np.zeros((y1 - y0, x1 - x0, 4), dtype=np.uint8)
-    rgba[:, :, 0:3] = rgb
-    rgba[:, :, 3] = np.where(seen, 255, 0).astype(np.uint8)
-    g = Image.fromarray(rgba, 'RGBA')
-    g = g.crop((xs.min(), ys.min(), xs.max() + 1, ys.max() + 1))
-    g.save(os.path.join(ASSETS, 'ghost.png'))
+    # Pre-rendered from assets/ghost-logo.svg (cairosvg, 2400 px wide,
+    # cropped to the opaque bbox + margin). Full figure, clean outline.
+    g = Image.open(os.path.join(ASSETS, 'ghost.png')).convert('RGBA')
+    print('ghost.png', g.size)
     return g
 
 # ---------------------------------------------------------------- scene helpers

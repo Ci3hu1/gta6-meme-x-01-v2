@@ -41,3 +41,20 @@ receipt/bill 1 and 8; "99% since 2013" 7; agent-won-it 8; died-waiting 9.
   this job — no post, no submit.
 - Status: built, NOT posted, NOT submitted. Posting + submitting wait for
   Joni's 'Setuju' on this exact v2 meme + post text.
+
+## Ghost fix (20 Nov ~00:30 WIB)
+
+- Joni: "Perbaiki dulu gambar ghostnya" — the v2 ghost's right edge was a
+  flat vertical cut (compose.py flood-fill cut the splash at x > 625) and
+  the ghost was cropped at the frame edge.
+- Fix: ghost now rendered at high resolution from the official vector logo
+  (assets/ghost-logo.svg, light variant; magenta coin removed — the money
+  bag already carries the paid angle and the coin would collide with it).
+  Rendered with cairosvg at 2400 px, cropped to the opaque bbox + margin,
+  stored as assets/ghost.png (1909x1971). compose.py no longer cuts the
+  splash — it loads the pre-rendered ghost. Full figure, clean outline on
+  every side, fully inside the frame. Everything else unchanged: same joke
+  text, scene, note, money bag, watermark, layout.
+- Verified visually at 1200x675 and at judge shrink 768x480: ghost outline
+  clean, no flat cut, no crop, text sharp, make.fun clear.
+- Kit check (fresh kit level 20): 0 failures. Quota re-checked, NOT submitted.
