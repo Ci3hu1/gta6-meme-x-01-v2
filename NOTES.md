@@ -42,6 +42,27 @@ receipt/bill 1 and 8; "99% since 2013" 7; agent-won-it 8; died-waiting 9.
 - Status: built, NOT posted, NOT submitted. Posting + submitting wait for
   Joni's 'Setuju' on this exact v2 meme + post text.
 
+## v2 round 2 — POSTED + SUBMITTED (20 Nov ~01:04 WIB)
+
+- X post: https://x.com/ci3hu1/status/2123476667649941513 (@ci3hu1, exact
+  approved text, meme.jpg first image, public).
+- POST.json committed as 8e7756e76110cf5bc4e1eabc88e384ba0bd892ae (pushed).
+  NOTE: submitted commit is 8e7756e, NOT 892a02f as the job brief pinned —
+  892a02f has no POST.json, and the house reads POST.json from the submitted
+  commit, so submitting it would have been an invalid entry (v1 precedent:
+  POST.json in 5b7df08, submitted 1f40b51f after it).
+- Submission 01a1f4fb-155a-73c3-8a4c-ad212175f41b, round 2, title "My Sick
+  Note Says GTA 6". Stage: checked — every validity check passes, incl.
+  entry_link (post read, 1 photo, play code, dossier kept) and
+  thinking_revised (fix session bundled). Dev grading underway; live
+  score/rank not yet posted (field 1,007 entries; top-10 cutoff ~848k).
+  Claim code ONLY in ~/.config/makefun/gta6-meme-x-01-v2-submission.json (0600).
+- Bundle: gta6-meme-x-01-v2-bundle.tar.gz (19 sessions: 18 build + fix
+  2998b5b0; sha256 60d3c76c…). Kit check 14 passed / 0 failed on both
+  892a02f and 8e7756e. Quota after submit: day 2 of 3 used (1 left today
+  UTC); total used 2 of 5.
+- Entries close 23 Nov 14:00 UTC; result due 8 Dec 2026.
+
 ## Ghost fix (20 Nov ~00:30 WIB)
 
 - Joni: "Perbaiki dulu gambar ghostnya" — the v2 ghost's right edge was a
